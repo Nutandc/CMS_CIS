@@ -1,26 +1,34 @@
 @extends('adminlte::master')
-@php(die())
+
 @section('adminlte_css')
     @yield('css')
 @stop
 
-@section('body_class', 'login-page')
+@section('body_class', 'register-page')
 
 @section('body')
-    <div class="login-box">
-        <div class="login-logo">
+    <div class="register-box">
+        <div class="register-logo">
             <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
         </div>
-        <!-- /.login-logo -->
-        <div class="login-box-body">
-            <p class="login-box-msg">{{ trans('adminlte::adminlte.password_reset_message') }}</p>
-            <form action="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}" method="post">
+
+        <div class="register-box-body">
+            <p class="login-box-msg">{{ /*trans('adminlte::adminlte.register_message')*/"Create User" }}</p>
+            <form action="{{ action(config('adminlte.admin_create_url', 'adminCreate')) }}" method="post">
                 {{ csrf_field() }}
 
-                <input type="hidden" name="token" value="{{ $token }}">
-
+                <div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
+                    <input type="text" name="name" class="form-control" value="{{ old('name') }}"
+                           placeholder="{{ trans('adminlte::adminlte.full_name') }}">
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    @if ($errors->has('name'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('name') }}</strong>
+                        </span>
+                    @endif
+                </div>
                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-                    <input type="email" name="email" class="form-control" value="{{ isset($email) ? $email : old('email') }}"
+                    <input type="email" name="email" class="form-control" value="{{ old('email') }}"
                            placeholder="{{ trans('adminlte::adminlte.email') }}">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     @if ($errors->has('email'))
@@ -29,6 +37,16 @@
                         </span>
                     @endif
                 </div>
+
+                <div class="form-group has-feedback {{ $errors->has('role') ? 'has-error' : '' }}">
+                    <select name = "role" class="form-control">
+                    <option value="">--Choose Role--</option>
+                    <option value="super_admin">Super Admin</option>
+                    <option value="admin">Admin</option>
+                    <option value="teacher">Teacher</option>
+                </select>
+                </div>
+
                 <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
                     <input type="password" name="password" class="form-control"
                            placeholder="{{ trans('adminlte::adminlte.password') }}">
@@ -50,12 +68,18 @@
                     @endif
                 </div>
                 <button type="submit" class="btn btn-primary btn-block btn-flat">
-                    {{ trans('adminlte::adminlte.reset_password') }}
+                    {{ trans('adminlte::adminlte.register') }}
                 </button>
             </form>
+            <br>
+           {{-- <p>
+                <a href="{{ url(config('adminlte.login_url', 'login')) }}" class="text-center">
+                    {{ trans('adminlte::adminlte.i_already_have_a_membership') }}
+                </a>
+            </p>--}}
         </div>
-        <!-- /.login-box-body -->
-    </div><!-- /.login-box -->
+        <!-- /.form-box -->
+    </div><!-- /.register-box -->
 @stop
 
 @section('adminlte_js')

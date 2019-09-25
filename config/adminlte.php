@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 2',
+    'title' => 'CMS',
 
     'title_prefix' => '',
 
@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>CMS</b>',
 
-    'logo_mini' => '<b>A</b>LT',
+    'logo_mini' => '<b></b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -116,6 +116,8 @@ return [
 
     'register_url' => 'register',
 
+    'admin_create_url'=>'admins',
+
     /*
     |--------------------------------------------------------------------------
     | Menu Items
@@ -126,6 +128,11 @@ return [
     | Awesome. A string instead of an array represents a header in sidebar
     | layout. The 'can' is a filter on Laravel's built in Gate functionality.
     */
+
+    'admin'=>[
+
+    ],
+
 
     'menu' => [
         [
@@ -139,7 +146,7 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
+            'text'        => 'Dashboard',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-file',
             'label'       => 4,
@@ -253,13 +260,19 @@ return [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.js',
+                    'location' => '//cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js',
                 ],
+                    [
+                        'type' => 'js',
+                        'asset' => false,
+                        'location' => '//cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js',
+                    ],
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.css',
+                    'location' => '//cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css',
                 ],
+
             ],
         ],
         [

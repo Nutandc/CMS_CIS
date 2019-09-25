@@ -2,40 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Admin;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * Display a listing of the resource.
      *
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-    public function __construct()
+    public function index()
     {
-        $this->middleware('auth');
+        //
     }
 
     /**
-     * Show the application dashboard.
+     * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        $admins = Admin::all();
-        return view('home',compact('admins'));
-
-        /**
-         * Show the form for creating a new resource.
-         *
-         * @return \Illuminate\Http\Response
-         */
-    }
     public function create()
     {
-        return view('admin.create');
+        //
     }
 
     /**
@@ -47,26 +35,7 @@ class HomeController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request,[
-            'name'=>'required',
-            'email'=>'required|unique:admins,email',
-            'password'=>'required|confirmed|min:5',
-            'role'=>'required',
-        ]);
-
-        $admin = new Admin;
-        $admin->name = $request->name;
-        $admin->email = $request->email;
-        $admin->password = $request->password;
-        $admin->role = $request->role;
-
-        $admin->save();
-        return redirect()->route('home');
-
-
-
     }
-
 
     /**
      * Display the specified resource.
@@ -74,7 +43,7 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show($id)
     {
         //
     }

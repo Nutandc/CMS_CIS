@@ -16,6 +16,7 @@
         @if (isset($item['submenu']))
             <ul class="dropdown-menu" role="menu">
                 @foreach($item['submenu'] as $subitem)
+                     @php(dd($subitem))
                     @if (is_string($subitem))
                         @if($subitem == '-')
                             <li role="separator" class="divider"></li>
